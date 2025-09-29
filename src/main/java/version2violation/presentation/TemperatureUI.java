@@ -26,7 +26,7 @@ public class TemperatureUI extends JFrame  {
     }
 
     private void setupUI(){
-        setTitle("Temperature Converter VERSION 2 VIOLATION");
+        setTitle("Temperature Converter VERSION 2");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(300, 150);
         setLayout(new FlowLayout());
@@ -57,11 +57,6 @@ public class TemperatureUI extends JFrame  {
     private void convertCToF() {
         try {
             double celsius = Double.parseDouble(getInput());
-            //// WITH 3 LAYERS -- GOOD DESIGN
-            // double fahrenheit = engine.celsiusToFahrenheit(celsius);
-            // setResult(String.format("%.2f °F", fahrenheit));
-
-            //// WITHOUT 3 LAYERS -- POOR DESIGN
             engine.celsiusToFahrenheit(celsius);
         } catch (NumberFormatException e) {
             setResult("Invalid input");
@@ -71,11 +66,6 @@ public class TemperatureUI extends JFrame  {
     private void convertFToC() {
         try {
             double fahrenheit = Double.parseDouble(getInput());
-            //// WITH 3 LAYERS -- GOOD DESIGN
-            // double celsius = engine.fahrenheitToCelsius(fahrenheit);
-            // setResult(String.format("%.2f °C", celsius));
-
-            //// WITHOUT 3 LAYERS -- POOR DESIGN
             engine.fahrenheitToCelsius(fahrenheit);
         } catch (NumberFormatException e) {
             setResult("Invalid input");
