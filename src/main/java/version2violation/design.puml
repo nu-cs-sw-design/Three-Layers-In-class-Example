@@ -1,0 +1,64 @@
+@startuml
+package version2violation
+{
+    package presentation
+    {
+        +class Main
+        {
+            +{static} main(args: String[]): void
+        }
+
+
+    +class TemperatureUI
+    {
+        -inputField: JTextField
+        -cToFButton: JButton
+        -fToCButton: JButton
+        -resultLabel: JLabel
+        -loadButton: JButton
+        -fileDataResults: JTextArea
+        -engine: TemperatureEngine
+        -datasource: TemperatureDataSource
+
+        +TemperatureUI(engine: TemperatureEngine, datasource: TemperatureDataSource)
+        -getInput(): String
+        +setResult(result: String): void
+        -convertCToF(): void
+        -convertFToC(): void
+        -celsiusToFahrenheit(double): double
+        -fahrenheitToCelsius(double): double
+        -loadTempsFromFile(fileName:String): void
+    }
+    }
+
+    package domain
+    {
+        +class TemperatureEngine
+        {
+            -ui: TemperatureUI
+            +setTemperatureUI(ui: TemperatureUI): void
+            +celsiusToFahrenheit(double): double
+            +fahrenheitToCelsius(double): double
+        }
+    }
+
+
+    package datasource
+    {
+        +class TemperatureDataSource
+        {
+            -fileName: String
+            +TemperatureDataSource(fileName: String)
+            +readTemperatures(): List<Double>
+        }
+    }
+}
+
+
+Main ..> TemperatureUI
+Main ..> TemperatureEngine
+Main ..> TemperatureDataSource
+TemperatureUI --> TemperatureDataSource
+TemperatureUI --> TemperatureEngine
+TemperatureEngine --> TemperatureUI
+@enduml

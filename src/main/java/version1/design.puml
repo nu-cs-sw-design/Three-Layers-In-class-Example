@@ -1,0 +1,31 @@
+@startuml
+package version1
+{
+    +class Main
+    {
+        +{static} main(args: String[]): void
+    }
+
+    +class TemperatureConverter
+    {
+        -inputField: JTextField
+        -cToFButton: JButton
+        -fToCButton: JButton
+        -resultLabel: JLabel
+        -loadButton: JButton
+        -fileDataResults: JTextArea
+
+        +TemperatureConverter(fileName: String)
+        -getInput(): String
+        -setResult(result: String): void
+        -convertCToF(): void
+        -convertFToC(): void
+        -celsiusToFahrenheit(double): double
+        -fahrenheitToCelsius(double): double
+        -loadTempsFromFile(fileName:String): void
+        -readTemperatures((fileName: String): List<Double> <<throws IOException>>)
+    }
+}
+
+Main ..> TemperatureConverter
+@enduml

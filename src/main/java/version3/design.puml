@@ -1,0 +1,69 @@
+@startuml
+package version3
+{
+    package presentation
+    {
+        +class Main
+        {
+            +{static} main(args: String[]): void
+        }
+
+
+        +class TemperatureView
+        {
+            -inputField: JTextField
+            -cToFButton: JButton
+            -fToCButton: JButton
+            -resultLabel: JLabel
+            -loadButton: JButton
+            -fileDataResults: JTextArea
+
+
+            +TemperatureView(model: TemperatureModel, datasource: TemperatureDataSource)
+            -getInput(): String
+            -setResult(result: String): void
+        }
+
+        +class TemperatureController
+        {
+            -model: TemperatureModel
+            -view: TemperatureView
+            -datasource: TemperatureDataSource
+            +TemperatureController(model: TemperatureModel, view: TemperatureView, datasource: TemperatureDataSource)
+            -convertCToF(): void
+            -convertFToC(): void
+            -loadTempsFromFile(fileName:String): void
+        }
+    }
+
+    package domain
+    {
+        +class TemperatureModel
+        {
+            +celsiusToFahrenheit(double): double
+            +fahrenheitToCelsius(double): double
+        }
+    }
+
+
+    package datasource
+    {
+        +class TemperatureDataSource
+        {
+            -fileName: String
+            +TemperatureDataSource(fileName: String)
+            +readTemperatures(): List<Double>
+        }
+    }
+}
+
+
+Main ..> TemperatureView
+Main ..> TemperatureController
+Main ..> TemperatureDataSource
+Main ..> TemperatureModel
+TemperatureController --> TemperatureDataSource
+TemperatureController --> TemperatureModel
+TemperatureController --> TemperatureView
+
+@enduml
