@@ -1,1 +1,0 @@
-Full-on MVC. NOT with three layers because the relationship among the model and the views violates the rule of three layers.

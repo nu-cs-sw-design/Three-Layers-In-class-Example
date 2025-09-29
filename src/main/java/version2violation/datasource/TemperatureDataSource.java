@@ -1,7 +1,5 @@
 package version2violation.datasource;
 
-import version2violation.presentation.TemperatureUI;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
